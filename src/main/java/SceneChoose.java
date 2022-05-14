@@ -67,17 +67,14 @@ public class SceneChoose extends JPanel {
             //System.out.println(listNameGroup.get(2).text());
 
 
-            //this.group.setText(elementList.get(1).text());
             for (int i = 0; i < listPointGroup.size(); i++) {
                 Element currentElement = listPointGroup.get(i);
                 count++;
                 String text = currentElement.text();
-                //  System.out.println(text);
             }
             int finalCount = count;
             JButton[] button = createButton(finalCount);
              numberOfGroup = addListenerToButtons(button);
-           // System.out.println("we did it" + numberOfGroup);
 
 
 
@@ -137,15 +134,11 @@ public class SceneChoose extends JPanel {
             button = arr[i];
             JButton finalButton = button;
             button.addActionListener((event) -> {
-              //  System.out.println("BUTTON CLICKED");
-                //  s = (arr[i].getText());
-           //     System.out.println(finalButton.getText());
+
                 s.set(finalButton.getText());
                 for (int j = 0; j < arr.length; j++) {
-                   // System.out.println(s);
                     remove(arr[j]);
                 }
-                sceneOfResult.showTeam(String.valueOf(s));
 
                 SceneOfResult sceneOfResult = new SceneOfResult(String.valueOf(s),whichLeague);
                 add(sceneOfResult);

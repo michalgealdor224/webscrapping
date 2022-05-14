@@ -85,15 +85,7 @@ public class OpenWindow extends JPanel {
         String text = "";
         try {
             Document website = Jsoup.connect("https://www.one.co.il/").get();
-            Elements element = website.select("a[href]");
-            ArrayList<String> hyperLinks = new ArrayList<String>();
-            for (Element e : element) {
-                hyperLinks.add("text" + e.text());
-                // hyperLinks.add("link"+e.attr("href"));
-            }
-            for (String s : hyperLinks) {
-             //   System.out.println(s);
-            }
+
             List<Element> elementList1 = website.getAllElements();
             List<Element> elementList = website.getElementsByClass("one-navigation-right-container");
             for (int i = 0; i < elementList.size(); i++) {
