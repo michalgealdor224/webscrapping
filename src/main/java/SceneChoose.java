@@ -146,8 +146,10 @@ public class SceneChoose extends JPanel {
                     remove(arr[j]);
                 }
                 sceneOfResult.showTeam(String.valueOf(s));
+
                 SceneOfResult sceneOfResult = new SceneOfResult(String.valueOf(s),whichLeague);
                 add(sceneOfResult);
+
             });
         }
         return s.get();

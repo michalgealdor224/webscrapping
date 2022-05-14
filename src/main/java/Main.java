@@ -3,8 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Main extends JFrame implements ActionListener {
-    Timer timer = new Timer(10000,this);
+public class Main extends JFrame  {
 
 
 
@@ -15,7 +14,6 @@ public class Main extends JFrame implements ActionListener {
 
     }
     public Main () {
-        timer.start();
         this.setSize(700, 600);
         this.setResizable(false);
         this.setBackground(Color.cyan);
@@ -36,11 +34,5 @@ public class Main extends JFrame implements ActionListener {
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource()== timer) {
-            repaint();
-        }
 
-    }
 }

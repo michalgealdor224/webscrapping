@@ -4,10 +4,36 @@ import org.jsoup.nodes.Element;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Objects;
+import java.util.TimerTask;
 
 public class SceneOfResult extends JPanel {
+
+    Timer timer = new Timer(0,null);
+    TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            if (System.currentTimeMillis() - scheduledExecutionTime() >=
+            1000) {
+              //  System.out.println("timer");
+                SceneOfResult sceneOfResult = new SceneOfResult(null,null);
+                OpenWindow openWindow = new OpenWindow(sceneOfResult);
+                remove(label);
+                remove(label2);
+                add(openWindow);
+            }
+            timerTask.run();
+
+
+
+
+
+        }
+    };
+
+
     private ImageIcon background;
     private JLabel label;
     private JLabel label2;
@@ -18,16 +44,20 @@ public class SceneOfResult extends JPanel {
     public static void main(String[] args) {
 
 
+
+
+
     }
+    public void actionPerformed(ActionEvent e) {
 
 
-
+    }
 
     public SceneOfResult(String numberOfClick,String whichLeague) {
         nameOfLeague = whichLeague;
         String theGroup = null;
-        String thePoint= null;
-        this.setBounds(0,0,700,600);
+        String thePoint = null;
+        this.setBounds(0, 0, 700, 600);
         this.setFocusable(true);
         this.requestFocus();
         this.setLayout(null);
@@ -36,9 +66,10 @@ public class SceneOfResult extends JPanel {
 
         Document website;
         String href = null;
-        int count=0;
+        int count = 0;
         List<Element> listNameGroup;
         List<Element> listPointGroup;
+
         try {
             if (Objects.equals(nameOfLeague, "ליגה הולנדית")) {
                 href = "https://www.one.co.il/Soccer/League/680";
@@ -56,25 +87,26 @@ public class SceneOfResult extends JPanel {
                 href = "https://www.one.co.il/Soccer/League/5";
             }
 
+
             assert href != null;
             website = Jsoup.connect(href).get();
             listNameGroup = website.getElementsByClass("teamname");
             listPointGroup = website.getElementsByClass("points");
-            for (int i=0; i< listNameGroup.size(); i++) {
+            for (int i = 0; i < listNameGroup.size(); i++) {
                 System.out.println(listNameGroup.get(i).text());
             }
-             thePoint =listPointGroup.get(Integer.parseInt(numberOfClick)).text();
-             theGroup =listNameGroup.get(Integer.parseInt(numberOfClick)).text();
+            thePoint = listPointGroup.get(Integer.parseInt(numberOfClick)).text();
+            theGroup = listNameGroup.get(Integer.parseInt(numberOfClick)).text();
+
 
             website = Jsoup.connect(href).get();
             List<Element> elementList = website.getElementsByClass(numberOfClick);
             System.out.println(numberOfClick);
             System.out.println(elementList.get(Integer.parseInt(numberOfClick)).text());
-            //this.group.setText(elementList.get(1).text());
             for (int i = 0; i < elementList.size(); i++) {
-              //  System.out.println(elementList.get(i).text());
                 count++;
             }
+
         } catch (Exception e) {
 
         }
@@ -82,25 +114,43 @@ public class SceneOfResult extends JPanel {
 
         String finalTheGroup = theGroup;
         String finalThePoint = thePoint;
-        new Thread(() -> {
-            this.background = new ImageIcon("background.jpg");
-            this.label = new JLabel("THE GROUP IS:" + " " + finalTheGroup);
-            this.label2 = new JLabel("SCORE:" + " " + finalThePoint);
-            this.label.setBounds(100,100,400,50);
-            this.label.setForeground(Color.green);
-            this.label.setFont(new Font("TimesRoman",Font.PLAIN,20));
-            add(label);
-            this.label2.setBounds(100,200,400,50);
-            this.label2.setForeground(Color.green);
-            this.label2.setFont(new Font("TimesRoman",Font.PLAIN,20));
-            add(label2);
-            repaint();
+        // Thread thread = new Thread( () ->
 
-        }).start();
-     //   findGroup(numberOfClick,nameOfLeague);
+        //    {
+        this.background = new ImageIcon("background.jpg");
+        this.label = new JLabel("THE GROUP IS:" + " " + finalTheGroup);
+        this.label2 = new JLabel("SCORE:" + " " + finalThePoint);
+        this.label.setBounds(100, 100, 400, 50);
+        this.label.setForeground(Color.green);
+        this.label.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        add(label);
+        this.label2.setBounds(100, 200, 400, 50);
+        this.label2.setForeground(Color.green);
+        this.label2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        add(label2);
+        repaint();
 
+
+        //   });thread.start();
+        //  try {
+        //    Thread.sleep(1000);
+        //  System.out.println("timerrr");
+        //     SceneOfResult sceneOfResult = new SceneOfResult(null,null);
+        //   OpenWindow openWindow = new OpenWindow(sceneOfResult);
+        //    add(openWindow);
+        //  remove(label);
+        //   remove(label2);
+
+
+        //    } catch (InterruptedException e) {
+        //      e.printStackTrace();
+        //  }
+
+
+        //   findGroup(numberOfClick,nameOfLeague);
 
     }
+  //  }
     public void createButton (int count) {
 
 
