@@ -41,7 +41,7 @@ public class SceneChoose extends JPanel {
         List<Element> listNameGroup;
         List<Element> listPointGroup;
 
-        System.out.println(nameOfLeague);
+      //  System.out.println(nameOfLeague);
         try {
             if (Objects.equals(nameOfLeague, "ליגה הולנדית")) {
                 href = "https://www.one.co.il/Soccer/League/680";
@@ -58,7 +58,7 @@ public class SceneChoose extends JPanel {
             if (Objects.equals(nameOfLeague, "ליגה אנגלית")) {
                 href = "https://www.one.co.il/Soccer/League/5";
             }
-            System.out.println(nameOfLeague);
+          //  System.out.println(nameOfLeague);
 
             website = Jsoup.connect(href).get();
             listNameGroup = website.getElementsByClass("teamname");
@@ -117,8 +117,8 @@ public class SceneChoose extends JPanel {
         int count=0;
         List<Element> listNameGroup;
         List<Element> listPointGroup;
-        System.out.println(numberOfClick);
-        System.out.println( nameOfLeague);
+      //  System.out.println(numberOfClick);
+     //   System.out.println( nameOfLeague);
 
 
         return count;
@@ -142,6 +142,10 @@ public class SceneChoose extends JPanel {
 
                 SceneOfResult sceneOfResult = new SceneOfResult(String.valueOf(s),whichLeague);
                 add(sceneOfResult);
+
+                ThreadTimer thread = new ThreadTimer(sceneOfResult);
+                thread.start();
+
 
             });
         }

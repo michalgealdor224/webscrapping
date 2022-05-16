@@ -7,7 +7,7 @@ public class ThreadTimer extends Thread{
 
     public void run(){
         try {
-            Thread.sleep(10000);
+            Thread.sleep(30000);
             this.sceneTransition.transitionToWindow();
 
         } catch (InterruptedException e) {

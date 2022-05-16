@@ -61,7 +61,7 @@ public class OpenWindow extends JPanel {
             remove(french);
             remove(english);
             repaint();
-            System.out.println(button.getText());
+          //  System.out.println(button.getText());
             SceneChoose sceneChoose = new SceneChoose("A", button.getText(), sceneOfResult);
             //   SecondScene secondScene = new SecondScene(button.getText());
             //  add(secondScene);
@@ -90,7 +90,7 @@ public class OpenWindow extends JPanel {
             List<Element> elementList = website.getElementsByClass("one-navigation-right-container");
             for (int i = 0; i < elementList.size(); i++) {
                 Element currentElement = elementList.get(i);
-                System.out.println(elementList.get(0).child(Integer.parseInt(numOfLeague)).text());
+               // System.out.println(elementList.get(0).child(Integer.parseInt(numOfLeague)).text());
                 // System.out.println(elementList.get(0).child(Integer.parseInt(numOfLeague)).text());
 
                 text = elementList.get(0).child(Integer.parseInt(numOfLeague)).text();

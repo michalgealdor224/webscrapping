@@ -109,9 +109,6 @@ public class SceneOfResult extends JPanel {
         add(label2);
         repaint();
 
-        ThreadTimer thread = new ThreadTimer(this);
-        thread.start();
-
     }
 
     protected void paintComponent(Graphics g) {
