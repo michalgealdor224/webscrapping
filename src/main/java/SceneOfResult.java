@@ -25,8 +25,14 @@ public class SceneOfResult extends JPanel {
 
     }
 
+    public void transitionToWindow(){
+        OpenWindow open = new OpenWindow(this);
+        this.add(open);
+    }
+
 
     public SceneOfResult(String numberOfClick,String whichLeague) {
+
         nameOfLeague = whichLeague;
         String theGroup = null;
         String thePoint = null;
@@ -80,6 +86,8 @@ public class SceneOfResult extends JPanel {
                 count++;
             }
 
+
+
         } catch (Exception e) {
 
         }
@@ -101,7 +109,8 @@ public class SceneOfResult extends JPanel {
         add(label2);
         repaint();
 
-
+        ThreadTimer thread = new ThreadTimer(this);
+        thread.start();
 
     }
 
