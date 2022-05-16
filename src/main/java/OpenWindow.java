@@ -1,11 +1,9 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OpenWindow extends JPanel {
@@ -16,9 +14,19 @@ public class OpenWindow extends JPanel {
     private JButton french;
     private JButton english;
     private SceneOfResult sceneOfResult;
+    public static final int X_OF_WINDOW=0, Y_OF_WINDOW=0 , WIDTH_OF_WINDOW=700,HEIGHT_OF_WINDOW=600;
+    public static final int LOCATION_OF_SPANISH=50;
+    public static final int LOCATION_OF_ITALIAN=150;
+    public static final int LOCATION_OF_NETHERLANDS=250;
+    public static final int LOCATION_OF_FRENCH=350;
+    public static final int LOCATION_OF_ENGLISH=450;
+    public static final int X_OF_BUTTON =100,WIDTH_OF_BUTTON= 150,HEIGHT_OF_BUTTON= 50;
+
+
 
 
     public static void main(String[] args) {
+
 
 
     }
@@ -30,7 +38,7 @@ public class OpenWindow extends JPanel {
         String league3 = findLeague("49");
         String league4 = findLeague("45");
         String league5 = findLeague("41");
-        this.setBounds(0, 0, 700, 600);
+        this.setBounds(X_OF_WINDOW, Y_OF_WINDOW, WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW);
         this.setFocusable(true);
         this.requestFocus();
         this.setLayout(null);
@@ -39,11 +47,11 @@ public class OpenWindow extends JPanel {
 
         new Thread(() -> {
             this.background = new ImageIcon("background.jpg");
-            spanish = createButton(league1, 50);
-            italian = createButton(league2, 150);
-            netherlands = createButton(league3, 250);
-            french = createButton(league4, 350);
-            english = createButton(league5, 450);
+            spanish = createButton(league1, LOCATION_OF_SPANISH);
+            italian = createButton(league2, LOCATION_OF_ITALIAN);
+            netherlands = createButton(league3, LOCATION_OF_NETHERLANDS);
+            french = createButton(league4, LOCATION_OF_FRENCH);
+            english = createButton(league5, LOCATION_OF_ENGLISH);
 
             repaint();
 
@@ -53,7 +61,7 @@ public class OpenWindow extends JPanel {
 
     public JButton createButton(String name, int y) {
         JButton button = new JButton(name);
-        button.setBounds(100, y, 150, 50);
+        button.setBounds(X_OF_BUTTON, y, WIDTH_OF_BUTTON, HEIGHT_OF_BUTTON);
         button.addActionListener((event) -> {
             remove(spanish);
             remove(italian);
@@ -61,10 +69,7 @@ public class OpenWindow extends JPanel {
             remove(french);
             remove(english);
             repaint();
-          //  System.out.println(button.getText());
             SceneChoose sceneChoose = new SceneChoose("A", button.getText(), sceneOfResult);
-            //   SecondScene secondScene = new SecondScene(button.getText());
-            //  add(secondScene);
             add(sceneChoose);
         });
         this.add(button);
@@ -76,7 +81,7 @@ public class OpenWindow extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (this.background != null) {
-            g.drawImage(this.background.getImage(), 0, 0, 700, 600, null);
+            g.drawImage(this.background.getImage(), X_OF_WINDOW, Y_OF_WINDOW, WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW, null);
         }
     }
 
@@ -86,18 +91,11 @@ public class OpenWindow extends JPanel {
         try {
             Document website = Jsoup.connect("https://www.one.co.il/").get();
 
-            List<Element> elementList1 = website.getAllElements();
             List<Element> elementList = website.getElementsByClass("one-navigation-right-container");
             for (int i = 0; i < elementList.size(); i++) {
-                Element currentElement = elementList.get(i);
-               // System.out.println(elementList.get(0).child(Integer.parseInt(numOfLeague)).text());
-                // System.out.println(elementList.get(0).child(Integer.parseInt(numOfLeague)).text());
+                text = elementList.get(i).child(Integer.parseInt(numOfLeague)).text();
+            }
 
-                text = elementList.get(0).child(Integer.parseInt(numOfLeague)).text();
-            }
-            for (int i = 0; i < elementList1.size(); i++) {
-                //   System.out.println(elementList1.get(i).text());
-            }
 
         } catch (Exception e) {
 

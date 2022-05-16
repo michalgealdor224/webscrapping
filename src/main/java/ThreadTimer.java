@@ -1,5 +1,7 @@
 public class ThreadTimer extends Thread{
     private SceneOfResult sceneTransition;
+    public static final int TIME_OF_REFRESH =10000;
+
     public ThreadTimer(SceneOfResult scene){
         this.sceneTransition = scene;
     }
@@ -7,14 +9,12 @@ public class ThreadTimer extends Thread{
 
     public void run(){
         try {
-            Thread.sleep(30000);
+            Thread.sleep(TIME_OF_REFRESH);
             this.sceneTransition.transitionToWindow();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    public void hello(){
-        System.out.println("hey");
-    }
+
 }

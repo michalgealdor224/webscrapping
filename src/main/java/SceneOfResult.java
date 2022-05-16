@@ -4,7 +4,6 @@ import org.jsoup.nodes.Element;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +16,12 @@ public class SceneOfResult extends JPanel {
     private JLabel label;
     private JLabel label2;
     String nameOfLeague;
+    public static final int X_OF_WINDOW=0, Y_OF_WINDOW=0 , WIDTH_OF_WINDOW=700,HEIGHT_OF_WINDOW=600;
+    public static final int X_OF_LABEL1=100, Y_OF_LABEL1=150 , WIDTH_OF_LABEL1=400,HEIGHT_OF_LABEL1=50;
+    public static final int X_OF_LABEL2=100, Y_OF_LABEL2=200 , WIDTH_OF_LABEL2=400,HEIGHT_OF_LABEL2=50,SIZE_OF_LABEL =20;
+
+
+
 
 
 
@@ -36,7 +41,7 @@ public class SceneOfResult extends JPanel {
         nameOfLeague = whichLeague;
         String theGroup = null;
         String thePoint = null;
-        this.setBounds(0, 0, 700, 600);
+        this.setBounds(X_OF_WINDOW, Y_OF_WINDOW, WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW);
         this.setFocusable(true);
         this.requestFocus();
         this.setLayout(null);
@@ -99,13 +104,13 @@ public class SceneOfResult extends JPanel {
         this.background = new ImageIcon("background.jpg");
         this.label = new JLabel("THE GROUP IS:" + " " + finalTheGroup);
         this.label2 = new JLabel("SCORE:" + " " + finalThePoint);
-        this.label.setBounds(100, 100, 400, 50);
+        this.label.setBounds(X_OF_LABEL1, Y_OF_LABEL1, WIDTH_OF_LABEL1, HEIGHT_OF_LABEL1);
         this.label.setForeground(Color.green);
-        this.label.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        this.label.setFont(new Font("TimesRoman", Font.PLAIN, SIZE_OF_LABEL));
         add(label);
-        this.label2.setBounds(100, 200, 400, 50);
+        this.label2.setBounds(X_OF_LABEL2, Y_OF_LABEL2, WIDTH_OF_LABEL2, HEIGHT_OF_LABEL2);
         this.label2.setForeground(Color.green);
-        this.label2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        this.label2.setFont(new Font("TimesRoman", Font.PLAIN, SIZE_OF_LABEL));
         add(label2);
         repaint();
 
@@ -114,7 +119,7 @@ public class SceneOfResult extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (this.background != null) {
-            g.drawImage(this.background.getImage(),0,0,700,600, null);
+            g.drawImage(this.background.getImage(),X_OF_WINDOW,Y_OF_WINDOW,WIDTH_OF_WINDOW,HEIGHT_OF_WINDOW, null);
         }
     }
 

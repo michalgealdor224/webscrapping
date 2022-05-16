@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Main extends JFrame  {
+    public static final int  WIDTH_OF_WINDOW=700,HEIGHT_OF_WINDOW=600;
+
 
 
 
@@ -14,7 +14,7 @@ public class Main extends JFrame  {
 
     }
     public Main () {
-        this.setSize(700, 600);
+        this.setSize(WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW);
         this.setResizable(false);
         this.setBackground(Color.cyan);
 
@@ -24,11 +24,6 @@ public class Main extends JFrame  {
         this.setVisible(true);
         SceneOfResult sceneOfResult = new SceneOfResult(null,null);
         OpenWindow openWindow = new OpenWindow(sceneOfResult);
-      //  SecondScene secondScene = new SecondScene();
-        //  this.add(secondScene);
-        //   SceneChoose sceneChoose = new SceneChoose("2","ליגה ספרדית");
-       // add(sceneChoose);
-      //  add(sceneOfResult);
 
        this.add(openWindow);
 

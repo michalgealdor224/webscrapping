@@ -14,6 +14,8 @@ public class SceneChoose extends JPanel {
     private SceneOfResult sceneOfResult;
     String whichLeague;
     String numberOfGroup;
+    public static final int X_OF_WINDOW=0, Y_OF_WINDOW=0 , WIDTH_OF_WINDOW=700,HEIGHT_OF_WINDOW=600;
+
 
 
     public static void main(String[] args) {
@@ -22,7 +24,7 @@ public class SceneChoose extends JPanel {
 
     public SceneChoose(String href, String nameOfLeague, SceneOfResult sceneOfResult) {
         whichLeague = nameOfLeague;
-        this.setBounds(0, 0, 700, 600);
+        this.setBounds(X_OF_WINDOW, Y_OF_WINDOW, WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW);
         this.sceneOfResult = sceneOfResult;
         this.setFocusable(true);
         this.requestFocus();
@@ -38,10 +40,8 @@ public class SceneChoose extends JPanel {
         int count = -1;
 
         Document website;
-        List<Element> listNameGroup;
         List<Element> listPointGroup;
 
-      //  System.out.println(nameOfLeague);
         try {
             if (Objects.equals(nameOfLeague, "ליגה הולנדית")) {
                 href = "https://www.one.co.il/Soccer/League/680";
@@ -58,19 +58,14 @@ public class SceneChoose extends JPanel {
             if (Objects.equals(nameOfLeague, "ליגה אנגלית")) {
                 href = "https://www.one.co.il/Soccer/League/5";
             }
-          //  System.out.println(nameOfLeague);
 
             website = Jsoup.connect(href).get();
-            listNameGroup = website.getElementsByClass("teamname");
             listPointGroup = website.getElementsByClass("points");
-           // System.out.println(listPointGroup.get(2).text());
-            //System.out.println(listNameGroup.get(2).text());
+
 
 
             for (int i = 0; i < listPointGroup.size(); i++) {
-                Element currentElement = listPointGroup.get(i);
                 count++;
-                String text = currentElement.text();
             }
             int finalCount = count;
             JButton[] button = createButton(finalCount);
@@ -81,7 +76,6 @@ public class SceneChoose extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        findGroup(numberOfGroup,nameOfLeague);
 
 
 
@@ -111,19 +105,7 @@ public class SceneChoose extends JPanel {
         }
         return arr;
     }
-    public int findGroup(String numberOfClick,String nameOfLeague) {
-        Document website;
-        String href = null;
-        int count=0;
-        List<Element> listNameGroup;
-        List<Element> listPointGroup;
-      //  System.out.println(numberOfClick);
-     //   System.out.println( nameOfLeague);
 
-
-        return count;
-
-    }
 
 
     public String addListenerToButtons(JButton[] arr) {
@@ -156,7 +138,7 @@ public class SceneChoose extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (this.background != null) {
-            g.drawImage(this.background.getImage(), 0, 0, 700, 600, null);
+            g.drawImage(this.background.getImage(), X_OF_WINDOW,Y_OF_WINDOW,WIDTH_OF_WINDOW,HEIGHT_OF_WINDOW, null);
         }
     }
 
